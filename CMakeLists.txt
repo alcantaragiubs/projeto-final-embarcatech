@@ -33,30 +33,37 @@ project(joystick_display C CXX ASM)
 # Initialise the Raspberry Pi Pico SDK
 pico_sdk_init()
 
-# Add executable. Default name is the project name, version 0.1
+# Adiciona os arquivos fonte do projeto
+add_executable(joystick_display 
+    src/main.c 
+    src/joystick.c 
+    src/display.c 
+    src/button.c 
+    src/buzzer.c
+    inc/ssd1306_i2c.c
+)
 
-add_executable(joystick_display joystick_display.c inc/ssd1306_i2c.c)
-
+# Definições de nome e versão do programa
 pico_set_program_name(joystick_display "joystick_display")
 pico_set_program_version(joystick_display "0.1")
 
-# Modify the below lines to enable/disable output over UART/USB
+# Habilita saída via USB e desabilita UART
 pico_enable_stdio_uart(joystick_display 0)
 pico_enable_stdio_usb(joystick_display 1)
 
-# Add the standard library to the build
-target_link_libraries(joystick_display
-        hardware_adc
-        pico_stdlib)
-
-# Add the standard include files to the build
+# Diretórios de cabeçalhos
 target_include_directories(joystick_display PRIVATE
-  ${CMAKE_CURRENT_LIST_DIR}
+    ${CMAKE_CURRENT_LIST_DIR}  # Inclui o diretório raiz
+    ${CMAKE_CURRENT_LIST_DIR}/inc  # Inclui diretório de headers adicionais
 )
 
-# Add any user requested libraries
-target_link_libraries(joystick_display 
-        hardware_i2c
-        )
+# Adiciona bibliotecas padrão e do hardware
+target_link_libraries(joystick_display
+    pico_stdlib
+    hardware_adc
+    hardware_i2c
+    hardware_pwm
+)
 
+# Gera arquivos extras (UF2, bin, hex)
 pico_add_extra_outputs(joystick_display)
