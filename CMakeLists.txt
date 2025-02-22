@@ -40,6 +40,7 @@ add_executable(joystick_display
     src/display.c 
     src/button.c 
     src/buzzer.c
+    src/partida.c
     inc/ssd1306_i2c.c
 )
 

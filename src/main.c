@@ -9,16 +9,17 @@
 #include "display.h"
 #include "button.h"
 #include "buzzer.h"
-
+#include "partida.h"
 
 const uint I2C_SDA = 14;
 const uint I2C_SCL = 15;
 
 const uint BUTTON_PIN = 22;
-const uint BUTTON1_PIN = 5;
-const uint BUTTON2_PIN = 6;
+extern const uint BUTTON1_PIN = 5;
+extern const uint BUTTON2_PIN = 6;
 
 const uint BUZZER_PIN = 21;
+
 
 int main() {
     stdio_init_all();
@@ -53,6 +54,7 @@ int main() {
     bool counter_paused = false;
     int saved_count = 0;
     char temp[32];
+
     while (true) {
         uint adc_x_raw, adc_y_raw;
         read_joystick(&adc_x_raw, &adc_y_raw);
@@ -74,11 +76,6 @@ int main() {
             }
             sleep_ms(200);
         }
-
-        // if (buttons_pressed(BUTTON1_PIN, BUTTON2_PIN)) {  
-        //     // beep(BUZZER_PIN, 1000);  // Toca o buzzer por 1000ms
-        // }
-        // Verifica se o contador está pausado e os botões 1 e 2 estão pressionados
         if (counter_paused && buttons_pressed(BUTTON1_PIN, BUTTON2_PIN)) {
             display_clear(ssd);
             snprintf(temp, sizeof(temp), "Max: %d", saved_count);
@@ -95,6 +92,7 @@ int main() {
 
         sleep_ms(100);
     }
+    partida_loop(ssd, &frame_area, saved_count);
 
     return 0;
 }
