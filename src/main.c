@@ -2,6 +2,7 @@
 #include "pico/stdlib.h"
 #include "configuracao.h"  
 #include "partida.h"
+#include "apresentacao.h"
 
 int main() {
     stdio_init_all();
@@ -9,8 +10,9 @@ int main() {
     uint8_t ssd[ssd1306_buffer_length];
     limpaDisplay(ssd);
     struct render_area frame_area;
+
     int saved_count = 0;
-    configuracaoa(&frame_area, ssd);
+    configuracaoHardware(&frame_area, ssd); 
     
     iniciaPartida(&saved_count, ssd, &frame_area);
 

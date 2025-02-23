@@ -39,7 +39,6 @@ add_executable(joystick_display
     src/configuracao.c
     src/apresentacao.c
     src/joystick.c 
-    src/display.c 
     src/botao.c 
     src/buzzer.c
     src/partida.c

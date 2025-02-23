@@ -9,7 +9,7 @@
 
 #include "inc/ssd1306.h"
 #include "joystick.h"
-#include "display.h"
+#include "apresentacao.h"
 #include "botao.h"
 #include "buzzer.h"
 #include "partida.h"
@@ -23,6 +23,6 @@ extern const uint BOTAO2_PIN;
 extern const uint BUZZER_PIN;
 
 // Declaração da função de setup
-void configuracaoa(struct render_area *frame_area, uint8_t *ssd);
+void configuracaoHardware(struct render_area *frame_area, uint8_t *ssd);
 
 #endif // CONFIGURACAO_H

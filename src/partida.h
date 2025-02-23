@@ -15,7 +15,7 @@ extern const uint BOTAO2_PIN;
 extern const uint BUZZER_PIN;
 
 // Função que contém toda a lógica da partida
-void imprimir(uint8_t *ssd, int x, int y, const char *texto);
+void atualizaDisplay(uint8_t *buffer, int count, bool counter_paused, int saved_count);
 void iniciaPartida(int *saved_count, uint8_t *ssd, struct render_area *frame_area);
 void joga(uint8_t *ssd, struct render_area *frame_area, int *saved_count);
 

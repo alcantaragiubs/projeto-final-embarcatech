@@ -10,7 +10,7 @@ const uint BOTAO2_PIN = 6;
 
 const uint BUZZER_PIN = 21;
 
-void configuracaoa(struct render_area *frame_area, uint8_t *ssd) {
+void configuracaoHardware(struct render_area *frame_area, uint8_t *ssd) {
     i2c_init(i2c1, ssd1306_i2c_clock * 1000);
     gpio_set_function(I2C_SDA, GPIO_FUNC_I2C);
     gpio_set_function(I2C_SCL, GPIO_FUNC_I2C);

@@ -1,5 +1,4 @@
 #include "pico/stdlib.h"
-#include "display.h"
 #include "botao.h"
 #include "ssd1306.h"
 #include <stdio.h>
@@ -8,6 +7,30 @@
 
 int pontosA = 0;
 int pontosB = 0;
+
+void atualizaDisplay(uint8_t *buffer, int count, bool counter_paused, int saved_count) { //configura partida
+    const char *text[] = {"Pontos para", "ganhar o jogo:"};
+    int y = 0;
+    for (uint i = 0; i < 2; i++) {
+        imprimir(buffer, 5, y, text[i]);
+        y += 15;
+    }
+
+    char temp[10];
+    if (counter_paused) {
+        snprintf(temp, sizeof(temp), "Ganhar:%d", saved_count);
+        imprimir(buffer, 5, y + 1, temp);
+
+        // Mensagem para iniciar o jogo
+        const char *start_text[] = {"Aperte A e B", "para iniciar"};
+        for (uint i = 0; i < 2; i++) {
+            imprimir(buffer, 5, y + 10 + (i * 15), start_text[i]);
+        }
+    } else {
+        snprintf(temp, sizeof(temp), "%d", count);
+        imprimir(buffer, 5, y + 1, temp);
+    }
+}
 
 void iniciaPartida(int *saved_count, uint8_t *ssd, struct render_area *frame_area) {
     int count = 0;
@@ -29,7 +52,7 @@ void iniciaPartida(int *saved_count, uint8_t *ssd, struct render_area *frame_are
                 counter_paused = true;
                 *saved_count = count;
             } else {
-                counter_paused = false;
+                counter_paused = false; //botar os count em portugues
                 count = 0;
             }
             sleep_ms(200);
@@ -38,13 +61,13 @@ void iniciaPartida(int *saved_count, uint8_t *ssd, struct render_area *frame_are
             limpaDisplay(ssd);
             beep(BUZZER_PIN, 1000);
             snprintf(temp, sizeof(temp), "Max: %d", *saved_count);
-            ssd1306_draw_string(ssd, 5, 15, temp);
-            ssd1306_draw_string(ssd, 5, 30, "Time a | Time b"); 
+            imprimir(ssd, 5, 15, temp);
+            imprimir(ssd, 5, 30, "Time a | Time b"); 
             render_on_display(ssd, frame_area);
             break; 
         }
         limpaDisplay(ssd);
-        display_update(ssd, count, counter_paused, *saved_count);
+        atualizaDisplay(ssd, count, counter_paused, *saved_count);
         render_on_display(ssd, frame_area);
 
         sleep_ms(100);
@@ -85,5 +108,6 @@ void joga(uint8_t *ssd, struct render_area *frame_area, int *saved_count) {
     else{
         imprimir(ssd, 5, 30, "Vitoria: Time B");
     }
+    imprimir(ssd, 5, 45, "Aperte reset");
     render_on_display(ssd, frame_area);
 }
