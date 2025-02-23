@@ -3,8 +3,8 @@
 
 #include "pico/stdlib.h"
 
-void joystick_init();
-const char* get_direction(uint adc_x_raw, uint adc_y_raw);
-void read_joystick(uint *adc_x_raw, uint *adc_y_raw);
+void iniciaJoystick();
+const char* getDirecao(uint adc_x_raw, uint adc_y_raw);
+void leJoystick(uint *adc_x_raw, uint *adc_y_raw);
 
 #endif

@@ -1,20 +1,20 @@
 #include "joystick.h"
 #include "hardware/adc.h"
 
-void joystick_init() {
+void iniciaJoystick() {
     adc_init();
     adc_gpio_init(26); // Eixo Y
     adc_gpio_init(27); // Eixo X
 }
 
-void read_joystick(uint *adc_x_raw, uint *adc_y_raw) {
+void leJoystick(uint *adc_x_raw, uint *adc_y_raw) {
     adc_select_input(0);
     *adc_y_raw = adc_read();
     adc_select_input(1);
     *adc_x_raw = adc_read();
 }
 
-const char* get_direction(uint adc_x_raw, uint adc_y_raw) {
+const char* getDirecao(uint adc_x_raw, uint adc_y_raw) {
     const uint center_threshold = 200;
     const uint min_threshold = 1000;
     const uint max_threshold = 3000;

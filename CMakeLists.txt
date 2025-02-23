@@ -36,9 +36,11 @@ pico_sdk_init()
 # Adiciona os arquivos fonte do projeto
 add_executable(joystick_display 
     src/main.c 
+    src/configuracao.c
+    src/apresentacao.c
     src/joystick.c 
     src/display.c 
-    src/button.c 
+    src/botao.c 
     src/buzzer.c
     src/partida.c
     inc/ssd1306_i2c.c

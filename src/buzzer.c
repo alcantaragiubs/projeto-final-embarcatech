@@ -1,7 +1,7 @@
 #include "buzzer.h"
 
 // Inicializa o buzzer
-void buzzer_init(uint buzzer_pin) {
+void iniciaBuzzer(uint buzzer_pin) {
     gpio_set_function(buzzer_pin, GPIO_FUNC_PWM);
     uint slice_num = pwm_gpio_to_slice_num(buzzer_pin);
     pwm_config config = pwm_get_default_config();

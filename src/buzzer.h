@@ -6,9 +6,9 @@
 #include "hardware/pwm.h"
 #include "hardware/clocks.h"
 
-#define BUZZER_FREQUENCY 2000  // Defina a frequência do buzzer
+#define BUZZER_FREQUENCY 1000  // Defina a frequência do buzzer
 
-void buzzer_init(uint buzzer_pin);
+void iniciaBuzzer(uint buzzer_pin);
 void beep(uint buzzer_pin, uint duration_ms);
 
 #endif
