@@ -28,13 +28,13 @@ set(PICO_BOARD pico_w CACHE STRING "Board type")
 # Pull in Raspberry Pi Pico SDK (must be before project)
 include(pico_sdk_import.cmake)
 
-project(joystick_display C CXX ASM)
+project(placar_eletronico C CXX ASM)
 
 # Initialise the Raspberry Pi Pico SDK
 pico_sdk_init()
 
 # Adiciona os arquivos fonte do projeto
-add_executable(joystick_display 
+add_executable(placar_eletronico 
     src/main.c 
     src/configuracao.c
     src/apresentacao.c
@@ -46,21 +46,21 @@ add_executable(joystick_display
 )
 
 # Definições de nome e versão do programa
-pico_set_program_name(joystick_display "joystick_display")
-pico_set_program_version(joystick_display "0.1")
+pico_set_program_name(placar_eletronico "placar_eletronico")
+pico_set_program_version(placar_eletronico "0.1")
 
 # Habilita saída via USB e desabilita UART
-pico_enable_stdio_uart(joystick_display 0)
-pico_enable_stdio_usb(joystick_display 1)
+pico_enable_stdio_uart(placar_eletronico 0)
+pico_enable_stdio_usb(placar_eletronico 1)
 
 # Diretórios de cabeçalhos
-target_include_directories(joystick_display PRIVATE
+target_include_directories(placar_eletronico PRIVATE
     ${CMAKE_CURRENT_LIST_DIR}  # Inclui o diretório raiz
     ${CMAKE_CURRENT_LIST_DIR}/inc  # Inclui diretório de headers adicionais
 )
 
 # Adiciona bibliotecas padrão e do hardware
-target_link_libraries(joystick_display
+target_link_libraries(placar_eletronico
     pico_stdlib
     hardware_adc
     hardware_i2c
@@ -68,4 +68,4 @@ target_link_libraries(joystick_display
 )
 
 # Gera arquivos extras (UF2, bin, hex)
-pico_add_extra_outputs(joystick_display)
+pico_add_extra_outputs(placar_eletronico)
