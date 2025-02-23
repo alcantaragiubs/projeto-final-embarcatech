@@ -8,7 +8,7 @@
 int pontosA = 0;
 int pontosB = 0;
 
-void atualizaDisplay(uint8_t *buffer, int count, bool counter_paused, int saved_count) { //configura partida
+void configuraPartida(uint8_t *buffer, int count, bool counter_paused, int saved_count) { 
     const char *text[] = {"Pontos para", "ganhar o jogo:"};
     int y = 0;
     for (uint i = 0; i < 2; i++) {
@@ -52,7 +52,7 @@ void iniciaPartida(int *saved_count, uint8_t *ssd, struct render_area *frame_are
                 counter_paused = true;
                 *saved_count = count;
             } else {
-                counter_paused = false; //botar os count em portugues
+                counter_paused = false; 
                 count = 0;
             }
             sleep_ms(200);
@@ -67,7 +67,7 @@ void iniciaPartida(int *saved_count, uint8_t *ssd, struct render_area *frame_are
             break; 
         }
         limpaDisplay(ssd);
-        atualizaDisplay(ssd, count, counter_paused, *saved_count);
+        configuraPartida(ssd, count, counter_paused, *saved_count);
         render_on_display(ssd, frame_area);
 
         sleep_ms(100);
