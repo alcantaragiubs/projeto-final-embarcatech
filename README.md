@@ -64,4 +64,4 @@ Desenvolver um dispositivo compacto e portátil, adequado para ambientes escolar
 5. Envie o arquivo gerado para a placa:
    - Localize o arquivo gerado no diretório `build` com extensão `.uf2`.
    - Conecte a placa ao computador via USB.
-   - Copie o arquivo `.placar_eletronicouf2` para a unidade correspondente à placa (normalmente detectada automaticamente no sistema operacional).
+   - Copie o arquivo `placar_eletronico.uf2` para a unidade correspondente à placa (normalmente detectada automaticamente no sistema operacional).
